@@ -12,8 +12,8 @@ function ImagePopup({ card, onClose }) {
         ></button>
         <img
           className="popup__img"
-          src={card !== null ? card.link : "#"}
-          alt={card !== null ? card.name : "#"}
+          src={card?.link}
+          alt={card?.name}
         />
         <h3 className="popup__img-caption">
           {card !== null ? card.name : "#"}

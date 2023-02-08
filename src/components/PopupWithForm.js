@@ -1,4 +1,4 @@
-function PopupWithForm({name, title, buttonText, isOpen, onClose, children}) {
+function PopupWithForm({name, title, buttonText, isOpen, onClose, children, onSubmit}) {
   return (
     <div
       className={
@@ -11,6 +11,7 @@ function PopupWithForm({name, title, buttonText, isOpen, onClose, children}) {
           className="popup__form popup__form-edit"
           name="{name}"
           noValidate
+          onSubmit={onSubmit}
         >
           {children}
           <button className="button button_type_save" type="submit">

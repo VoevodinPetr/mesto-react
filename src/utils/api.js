@@ -22,7 +22,7 @@ class Api {
       });
     }
   
-    setUserInfo({name, job}) {
+    setUserInfo({name, about}) {
       const url = `${this._baseUrl}/users/me`;
   
       return fetch(url, {
@@ -30,7 +30,7 @@ class Api {
         headers: this._headers,
         body: JSON.stringify({
           name,
-          about: job
+          about
         })
       })
       .then(res => {
@@ -126,9 +126,6 @@ class Api {
         .then(res => {
           throw new Error(res.message);
         });
-      })
-      .then(res => {
-        return res.likes;
       });
     }
   
@@ -145,9 +142,6 @@ class Api {
         .then(res => {
           throw new Error(res.message);
         });
-      })
-      .then(res => {
-        return res.likes;
       });
     }
   
