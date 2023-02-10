@@ -113,47 +113,59 @@ class Api {
       });
     }
   
-    _setLike(cardId) {
-      const url = `${this._baseUrl}/cards/${cardId}/likes`;
-  
-      return fetch(url, {
-        method: 'PUT',
-        headers: this._headers
-      })
-      .then(res => {
-        if (res.ok) return res.json();
-        return res.json()
-        .then(res => {
-          throw new Error(res.message);
-        });
+    /**
+   * Ставит лайк на карточку
+   * @param {string} cardId - ID карточки
+   * @returns {Promise} Промис с массивом новых лайков карточки
+   */
+  _setLike(cardId) {
+    const url = `${this._baseUrl}/cards/${cardId}/likes`;
+
+    return fetch(url, {
+      method: "PUT",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) return res.json();
+      return res.json().then((res) => {
+        throw new Error(res.message);
       });
-    }
-  
-    _deleteLike(cardId) {
-      const url = `${this._baseUrl}/cards/${cardId}/likes`;
-  
-      return fetch(url, {
-        method: 'DELETE',
-        headers: this._headers
-      })
-      .then(res => {
-        if (res.ok) return res.json();
-        return res.json()
-        .then(res => {
-          throw new Error(res.message);
-        });
+    });
+  }
+
+  /**
+   * Удаляет лайк с карточки
+   * @param {string} cardId - ID карточки
+   * @returns {Promise} Промис с массивом новых лайков карточки
+   */
+  _deleteLike(cardId) {
+    const url = `${this._baseUrl}/cards/${cardId}/likes`;
+
+    return fetch(url, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) return res.json();
+      return res.json().then((res) => {
+        throw new Error(res.message);
       });
-    }
-  
-    toggleLike(cardId, isLiked) {
-      if (isLiked) {
-        return this._deleteLike(cardId);
-      } else {
-        return this._setLike(cardId);
-      }
+    });
+  }
+
+  /**
+   * Переключает лайк карточки
+   * @param {string} cardId - ID карточки
+   * @param {boolean} isLiked - Текущий статус лайка
+   * @returns {Promise} Промис с массивом новых лайков карточки
+   */
+  toggleLike(cardId, isLiked) {
+    if (isLiked) {
+      return this._deleteLike(cardId);
+    } else {
+      return this._setLike(cardId);
     }
   }
-  
-  const api = new Api(apiConfig);
-  
-  export default api;
+}
+
+const api = new Api(apiConfig);
+
+export default api;

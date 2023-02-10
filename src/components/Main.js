@@ -58,6 +58,7 @@ function Main({
               onCardClick={onCardClick}
               onCardLike={onCardLike}
               onCardDelete={onCardDelete}
+              like={card.likes}
             />
           ))}
         </ul>
